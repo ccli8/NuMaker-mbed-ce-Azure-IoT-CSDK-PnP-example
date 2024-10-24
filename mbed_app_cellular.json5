@@ -1,0 +1,71 @@
+{
+    "config": {
+        "use_dps": {
+            "help": "Enable connecting with IoT Hub via DPS",
+            "options": [null, true],
+            "value": true
+        },
+        "iothub_client_trace": {
+            "help": "Enable IoT Hub Client tracing",
+            "value": false
+        }
+    },
+    "target_overrides": {
+        "*": {
+            "platform.minimal-printf-enable-floating-point": true,
+            "platform.stdio-convert-newlines": true,
+            "platform.stdio-baud-rate": 115200,
+            "target.network-default-interface-type": "CELLULAR",
+            "lwip.ipv4-enabled": true,
+            "lwip.ethernet-enabled": false,
+            "lwip.ppp-enabled": false,
+            "lwip.tcp-enabled": false,
+            "mbed-trace.enable": false,
+            "cellular.debug-at": false,
+            "nsapi.default-cellular-plmn": 0,
+            "nsapi.default-cellular-sim-pin": 0,
+            "nsapi.default-cellular-apn": 0,
+            "nsapi.default-cellular-username": 0,
+            "nsapi.default-cellular-password": 0
+        },
+        "NUMAKER_PFM_M487": {
+            "target.components_add"                 : ["QUECTEL_BG96"],
+            "QUECTEL_BG96.provide-default"          : true,
+            "QUECTEL_BG96.tx"                       : "D1",
+            "QUECTEL_BG96.rx"                       : "D0",
+            "target.macros_add"                     : ["MBEDTLS_ENTROPY_HARDWARE_ALT"]
+        },
+        "NUMAKER_IOT_M487": {
+            "target.components_add"                 : ["QUECTEL_BG96"],
+            "QUECTEL_BG96.provide-default"          : true,
+            "QUECTEL_BG96.tx"                       : "D1",
+            "QUECTEL_BG96.rx"                       : "D0",
+            "target.macros_add"                     : ["MBEDTLS_ENTROPY_HARDWARE_ALT"]
+        },
+        "NUMAKER_IOT_M487_DEV": {
+            "target.components_add"                 : [
+                                                        "QUECTEL_BG96",
+                                                        "BMX055"
+                                                      ]
+        },
+        "NUMAKER_IOT_M467": {
+            "target.components_add"                 : ["QUECTEL_BG96"],
+            "QUECTEL_BG96.provide-default"          : true,
+            "QUECTEL_BG96.tx"                       : "D1",
+            "QUECTEL_BG96.rx"                       : "D0"
+        },
+        "NUMAKER_IOT_M263A": {
+            "target.components_add"                 : ["QUECTEL_BG96"],
+            "QUECTEL_BG96.provide-default"          : true,
+            "QUECTEL_BG96.tx"                       : "PE_14",
+            "QUECTEL_BG96.rx"                       : "PE_15"
+        },
+        "NUMAKER_PFM_NUC472": {
+            "target.components_add"                 : ["QUECTEL_BG96"],
+            "QUECTEL_BG96.provide-default"          : true,
+            "QUECTEL_BG96.tx"                       : "D1",
+            "QUECTEL_BG96.rx"                       : "D0",
+            "target.macros_add"                     : ["MBEDTLS_ENTROPY_HARDWARE_ALT"]
+        }
+    }
+}

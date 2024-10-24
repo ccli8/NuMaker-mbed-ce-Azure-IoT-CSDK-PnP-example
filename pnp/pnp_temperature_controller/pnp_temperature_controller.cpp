@@ -37,6 +37,8 @@ extern "C" {
     #include "pnp_deviceinfo_component.h"
 }
 
+#include "aziot_user_config.h"
+
 // Values of connection / security settings read from environment variables and/or DPS runtime
 PNP_DEVICE_CONFIGURATION g_pnpDeviceConfiguration;
 
@@ -318,13 +320,13 @@ static bool GetConnectionSettingsFromConfiguration()
 {
 #ifdef USE_PROV_MODULE_FULL
     g_pnpDeviceConfiguration.securityType = PNP_CONNECTION_SECURITY_TYPE_DPS;
-    g_pnpDeviceConfiguration.u.dpsConnectionAuth.endpoint = MBED_CONF_APP_PROVISION_ENDPOINT;
-    g_pnpDeviceConfiguration.u.dpsConnectionAuth.idScope = MBED_CONF_APP_PROVISION_ID_SCOPE;
-    g_pnpDeviceConfiguration.u.dpsConnectionAuth.deviceId = MBED_CONF_APP_PROVISION_REGISTRATION_ID;
-    g_pnpDeviceConfiguration.u.dpsConnectionAuth.deviceKey = MBED_CONF_APP_PROVISION_SYMMETRIC_KEY;
+    g_pnpDeviceConfiguration.u.dpsConnectionAuth.endpoint = AZIOT_CONF_PROVISION_ENDPOINT;
+    g_pnpDeviceConfiguration.u.dpsConnectionAuth.idScope = AZIOT_CONF_PROVISION_ID_SCOPE;
+    g_pnpDeviceConfiguration.u.dpsConnectionAuth.deviceId = AZIOT_CONF_PROVISION_REGISTRATION_ID;
+    g_pnpDeviceConfiguration.u.dpsConnectionAuth.deviceKey = AZIOT_CONF_PROVISION_SYMMETRIC_KEY;
 #else
     g_pnpDeviceConfiguration.securityType = PNP_CONNECTION_SECURITY_TYPE_CONNECTION_STRING;
-    g_pnpDeviceConfiguration.u.connectionString = MBED_CONF_APP_IOTHUB_CONNECTION_STRING;
+    g_pnpDeviceConfiguration.u.connectionString = AZIOT_CONF_DEVICE_CONNECTION_STRING;
 #endif
 
     return true;
